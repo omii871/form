@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/form.css">
+</head>
+
+<body style="background-color: rgb(230, 229, 229);">
+    <div class="d-flex justify-content-around mt-2 flex-wrap">
+
+        <div class=" col-12 col-sm-4 col-md-3 col-lg-2 text-center">
+            <i class="fa fa-user bg-success rounded-circle" id="navlogo"></i>
+            <div>Personal Details</div>
+        </div>
+        <div class=" col-12 col-sm-4 col-md-3 col-lg-2 text-center">
+            <i class="fa bg-success fa-graduation-cap rounded-circle" id="navlogo"></i>
+            <div>Educational Details</div>
+        </div>
+        <div class="d-grid col-12 col-sm-4 col-md-3 col-lg-2 text-center">
+            <i class="fa-regular bg-success fa-file-image rounded-circle" id="navlogo"></i>
+            <div>Document Details</div>
+        </div>
+        <div class="step-line">
+        </div>
+    </div>
+    <div class="container mt-5" id="personal-details-section">
+        <form class="container mt-3 border border-dark p-3 rounded shadow-lg" id="form1">
+            <legend>Personal Details</legend>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="adhar">
+                        <h6>Adhar No:<span class="text-danger">*</span></h6>
+                    </label>
+                    <input type="text" class="form-control border-dark" placeholder="XXXX XXXX XXXX 1234" id="adhar">
+                </div>
+                <div class="col-md-4">
+                    <label for="name">
+                        <h6>Name:<span class="text-danger">*</span></h6>
+                    </label>
+                    <input type="text" class="form-control border-dark" id="name">
+                </div>
+                <div class="col-md-4">
+                    <label for="mobile">
+                        <h6>Mobile No:<span class="text-danger">*</span></h6>
+                    </label>
+                    <input type="text" class="form-control border-dark" id="mobile">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="email">
+                        <h6>Email Id:<span class="text-danger">*</span></h6>
+                    </label>
+                    <input type="email" class="form-control border-dark" placeholder="abc@gmail.com" id="email">
+                </div>
+                <div class="col-md-4">
+                    <label for="dob">
+                        <h6>Date of Birth:<span class="text-danger">*</span></h6>
+                    </label>
+                    <input type="date" class="form-control border-dark" id="dob" onchange="calculateAge()">
+                </div>
+                <div class="col-md-4">
+                    <label for="age">
+                        <h6>Age:<span class="text-danger">*</span></h6>
+                    </label>
+                    <input type="text" class="form-control border-dark" id="age" readonly>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="religion">
+                        <h6>Religion:<span class="text-danger">*</span></h6>
+                    </label>
+                    <select class="form-select border-dark" id="religion" name="religion">
+                        <option value="Open">Open</option>
+                        <option value="SC">SC</option>
+                        <option value="EBS">EBS</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="gender" class="form-label "><b>Gender:<span class="text-danger">*</span></b></label>
+                    <select class="form-select border-dark" id="gender" name="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <h6>Marital Status<span class="text-danger">*</span></h6>
+                    <input type="radio" id="single" name="status" value="single">
+                    <label for="single">Single</label>
+                    <input type="radio" id="married" name="status" value="married">
+                    <label for="married">Married</label><br>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" onclick="showEducationalDetails()">Save &
+                        Next</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    </div>
+    <!-- Educational Details -->
+    <div class="container mt-5 hidden" id="educational-details-section">
+        <form class="container mt-3 border p-3 rounded shadow-sm">
+            <legend>Educational Details</legend>
+
+            <!-- Placeholder for dynamic qualification fields -->
+            <div id="qualifications-container">
+                <div class="row mb-3 qualification">
+                    <div class="col-md-4">
+                        <label for="qualification">
+                            <h6>Highest Qualification:</h6>
+                        </label>
+                        <select class="form-select border-dark" name="qualification[]">
+                            <option value="">Select Qualification</option>
+                            <option value="highschool">High School</option>
+                            <option value="bachelor">Bachelor's Degree</option>
+                            <option value="master">Master's Degree</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="institution">
+                            <h6>Institution Name:</h6>
+                        </label>
+                        <input type="text" class="form-control border-dark" name="institution_name[]">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="graduationYear">
+                            <h6>Year of Graduation:</h6>
+                        </label>
+                        <input type="number" class="form-control border-dark" name="graduation_year[]">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-12 d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary"
+                        onclick="goBackToPersonalDetails()">Previous</button>
+                    <button type="button" class="btn btn-primary" onclick="addQualification()">Add Another
+                        Qualification</button>
+                    <button type="button" class="btn btn-primary" onclick="saveAndNext()">Save & Next</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Document Upload -->
+    <div class="container mt-5 hidden" id="document-upload-section">
+        <form class="container mt-3 border p-3 rounded shadow-sm" onsubmit="submitForm(event)">
+            <legend>Document Upload</legend>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="photo">
+                        <h6>Photo:</h6>
+                    </label>
+                    <input type="file" class="form-control border-dark" id="photo" name="photo">
+                </div>
+                <div class="col-md-4">
+                    <label for="adhar-card">
+                        <h6>Adhar Card:</h6>
+                    </label>
+                    <input type="file" class="form-control border-dark" id="adhar-card" name="adhar-card">
+                </div>
+                <div class="col-md-4">
+                    <label for="certificate-12">
+                        <h6>12th Certificate:</h6>
+                    </label>
+                    <input type="file" class="form-control border-dark" id="certificate-12" name="certificate-12">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="domicile-certificate">
+                        <h6>Domicile Certificate:</h6>
+                    </label>
+                    <input type="file" class="form-control border-dark" id="domicile-certificate"
+                        name="domicile-certificate">
+                </div>
+                <div class="col-md-4">
+                    <label for="pan-card">
+                        <h6>Pan Card:</h6>
+                    </label>
+                    <input type="file" class="form-control border-dark" id="pan-card" name="pan-card">
+                </div>
+                <div class="col-md-4">
+                    <label for="driving-license">
+                        <h6>Driving License:</h6>
+                    </label>
+                    <input type="file" class="form-control border-dark" id="driving-license" name="driving-license">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" onclick="goBackToEducationalDetails()">Previous
+                    </button>&nbsp;
+                    <button type="button" class="btn btn-primary" onclick="previewForm()">Preview</button>&nbsp;
+
+
+                    <button type="submit" class="btn btn-success">Submit</button>&nbsp;
+                </div>
+            </div>
+            <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="previewModalLabel">Form Preview</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="previewContent">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="submitForm()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="crud-operation-section" style="margin-top: 30px;" class="shadow-lg rounded mt-2">
+            <h3>Submitted Data</h3>
+            <div style="overflow-y: auto; max-height: 400px;"> <!-- Add scrollable container -->
+                <table class="table table-bordered border border-dark">
+                    <thead>
+                        <tr>
+                            <th colspan="8" style="background-color: rgb(184, 188, 188); text-align: center;">
+                                <h5>Personal Details</h5>
+                            </th>
+                            <th colspan="4" style="background-color: rgb(184, 188, 188); text-align: center;">
+                                <h5>Education Details</h5>
+                            </th>
+                            <th colspan="6" style="background-color: rgb(184, 188, 188); text-align: center;">
+                                <h5>Document Upload</h5>
+                            </th>
+                        </tr>
+                        <tr class="header-row">
+                            <th>Aadhar No</th>
+                            <th>Full Name</th>
+                            <th>Mobile Number</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Date of Birth</th>
+                            <th>Gender</th>
+                            <th>Marital Status</th>
+                            <th>Highest Qualification</th>
+                            <th>Institution</th>
+                            <th>Graduation Year</th>
+                            <th>Photo</th>
+                            <th>Aadhar Card</th>
+                            <th>12th Certification</th>
+                            <th>Domicile Certification</th>
+                            <th>Pan Card</th>
+                            <th>Driving License</th>
+                        </tr>
+                    </thead>
+                    <tbody id="crudDataTable">
+                        <!-- Data will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+
+
+        function calculateAge() {
+            const dob = new Date(document.getElementById('dob').value);
+            const today = new Date();
+            const age = today.getFullYear() - dob.getFullYear();
+            document.getElementById('age').value = age;
+        }
+
+        function previewForm() {
+            const personalDetails = JSON.parse(localStorage.getItem('personalDetails')) || {};
+            const educationalDetails = JSON.parse(localStorage.getItem('educationalDetails')) || [];
+            const documentDetails = JSON.parse(localStorage.getItem('documentDetails')) || {};
+
+            let previewContent = `
+        <h5>Personal Details</h5>
+        <p><strong>Adhar Number:</strong> ${personalDetails.adhar}</p>
+        <p><strong>Name:</strong> ${personalDetails.name}</p>
+        <p><strong>Mobile:</strong> ${personalDetails.mobile}</p>
+        <p><strong>Email:</strong> ${personalDetails.email}</p>
+        <p><strong>Date of Birth:</strong> ${personalDetails.dob}</p>
+        <p><strong>Age:</strong> ${personalDetails.age}</p>
+        <p><strong>Religion:</strong> ${personalDetails.religion}</p>
+        <p><strong>Gender:</strong> ${personalDetails.gender}</p>
+        <p><strong>Marital Status:</strong> ${personalDetails.status}</p>
+        <hr>
+        <h5>Educational Details</h5>`;
+
+            educationalDetails.forEach(edu => {
+                previewContent += `
+            <p><strong>Qualification:</strong> ${edu.qualification}</p>
+            <p><strong>Institution Name:</strong> ${edu.institution}</p>
+            <p><strong>Graduation Year:</strong> ${edu.graduationYear}</p>
+            <hr>`;
+            });
+
+            previewContent += `
+        <h5>Document Details</h5>
+        <p><strong>Photo:</strong> ${documentDetails.photo}</p>
+        <p><strong>Adhar Card:</strong> ${documentDetails.adharCard}</p>
+        <p><strong>12th Certificate:</strong> ${documentDetails.certificate12}</p>
+        <p><strong>Domicile Certificate:</strong> ${documentDetails.domicileCertificate}</p>
+        <p><strong>Pan Card:</strong> ${documentDetails.panCard}</p>
+        <p><strong>Driving License:</strong> ${documentDetails.drivingLicense}</p>
+    `;
+
+            document.getElementById('previewContent').innerHTML = previewContent;
+            var myModal = new bootstrap.Modal(document.getElementById('previewModal'));
+            myModal.show();
+        }
+
+
+        function savePersonalDetails() {
+            const adhar = document.getElementById('adhar').value;
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            const email = document.getElementById('email').value;
+            const dob = document.getElementById('dob').value;
+            const age = document.getElementById('age').value;
+            const religion = document.getElementById('religion').value;
+            const gender = document.getElementById('gender').value;
+            const status = document.querySelector('input[name="status"]:checked') ? document.querySelector('input[name="status"]:checked').value : '';
+            const personalDetails = {
+                adhar,
+                name,
+                mobile,
+                email,
+                dob,
+                age,
+                religion,
+                gender,
+                status
+            };
+            localStorage.setItem('personalDetails', JSON.stringify(personalDetails));
+        }
+        function saveEducationalDetails() {
+            const qualification = document.getElementById('qualification').value;
+            const institution = document.getElementById('institution').value;
+            const graduationYear = document.getElementById('graduationYear').value;
+            const educationalDetails = {
+                qualification,
+                institution,
+                graduationYear,
+            };
+            localStorage.setItem('educationalDetails', JSON.stringify(educationalDetails));
+        }
+        function saveDocumentDetails() {
+            console.log("ggg")
+            const photo = document.getElementById('photo').files[0];
+            const adharCard = document.getElementById('adhar-card').files[0];
+            const certificate12 = document.getElementById('certificate-12').files[0];
+            const domicileCertificate = document.getElementById('domicile-certificate').files[0];
+            const panCard = document.getElementById('pan-card').files[0];
+            const drivingLicense = document.getElementById('driving-license').files[0];
+            const documentDetails = {
+                photo: photo ? photo.name : '',
+                adharCard: adharCard ? adharCard.name : '',
+                certificate12: certificate12 ? certificate12.name : '',
+                domicileCertificate: domicileCertificate ? domicileCertificate.name : '',
+                panCard: panCard ? panCard.name : '',
+                drivingLicense: drivingLicense ? drivingLicense.name : ''
+            };
+            console.log(documentDetails)
+            localStorage.setItem('documentDetails', JSON.stringify(documentDetails));
+        }
+        // window.onload = function () {
+        //     const personalDetails = JSON.parse(localStorage.getItem('personalDetails'));
+        //     if (personalDetails) {
+        //         document.getElementById('adhar').value = personalDetails.adhar;
+        //         document.getElementById('name').value = personalDetails.name;
+        //         document.getElementById('mobile').value = personalDetails.mobile;
+        //         document.getElementById('email').value = personalDetails.email;
+        //         document.getElementById('dob').value = personalDetails.dob;
+        //         document.getElementById('age').value = personalDetails.age;
+        //         document.getElementById('religion').value = personalDetails.religion;
+        //         document.getElementById('gender').value = personalDetails.gender;
+        //         if (personalDetails.status) {
+        //             document.querySelector(`input[name="status"][value="${personalDetails.status}"]`).checked = true;
+        //         }
+        //     }
+        //     const educationalDetails = JSON.parse(localStorage.getItem('educationalDetails'));
+        //     if (educationalDetails) {
+        //         document.getElementById('qualification').value = educationalDetails.qualification;
+        //         document.getElementById('institution').value = educationalDetails.institution;
+        //         document.getElementById('graduationYear').value = educationalDetails.graduationYear;
+        //         document.getElementById('specialization').value = educationalDetails.specialization;
+        //     }
+        //     const documentDetails = JSON.parse(localStorage.getItem('documentDetails'));
+        //     if (documentDetails) {
+        //         document.getElementById('photo').value = documentDetails.photo;
+        //         document.getElementById('adhar-card').value = documentDetails.adharCard;
+        //         document.getElementById('certificate-12').value = documentDetails.certificate12;
+        //         document.getElementById('domicile-certificate').value = documentDetails.domicileCertificate;
+        //         document.getElementById('pan-card').value = documentDetails.panCard;
+        //         document.getElementById('driving-license').value = documentDetails.drivingLicense;
+        //     }
+        // };
+        function calculateAge() {
+            const dob = new Date(document.getElementById('dob').value);
+            const today = new Date();
+            const age = today.getFullYear() - dob.getFullYear();
+            document.getElementById('age').value = age;
+        }
+        function showEducationalDetails() {
+            if (validatePersonalDetails()) {
+                savePersonalDetails();
+                document.getElementById('personal-details-section').classList.add('hidden');
+                document.getElementById('educational-details-section').classList.remove('hidden');
+            }
+        }
+        function showDocumentUpload() {
+            if (validateEducationalDetails()) {
+                saveEducationalDetails();
+                document.getElementById('educational-details-section').classList.add('hidden');
+                document.getElementById('document-upload-section').classList.remove('hidden');
+            }
+        }
+        function goBackToPersonalDetails() {
+            saveEducationalDetails();
+            document.getElementById('educational-details-section').classList.add('hidden');
+            document.getElementById('personal-details-section').classList.remove('hidden');
+        }
+        function goBackToEducationalDetails() {
+            saveDocumentDetails();
+            document.getElementById('document-upload-section').classList.add('hidden');
+            document.getElementById('educational-details-section').classList.remove('hidden');
+        }
+        function validatePersonalDetails() {
+            const adhar = document.getElementById('adhar').value;
+            const name = document.getElementById('name').value;
+            const mobile = document.getElementById('mobile').value;
+            const email = document.getElementById('email').value;
+            const dob = document.getElementById('dob').value;
+            const age = document.getElementById('age').value;
+
+            if (!adhar || !name || !mobile || !email || !dob || !age) {
+                alert("Please fill in all personal details.");
+                return false;
+            }
+            return true;
+        }
+        function validateEducationalDetails() {
+            const qualification = document.getElementById('qualification').value;
+            const institution = document.getElementById('institution').value;
+            const graduationYear = document.getElementById('graduationYear').value;
+
+            if (!qualification || !institution || !graduationYear) {
+                alert("Please fill in all educational details.");
+                return false;
+            }
+            return true;
+        }
+        function validateDocumentUploads() {
+            console.log("valid fn")
+
+            // const photo = document.getElementById('photo').files.length;
+            // const adharCard = document.getElementById('adhar-card').files.length;
+            // const certificate12 = document.getElementById('certificate-12').files.length;
+
+            // if (photo === 0 || adharCard === 0 || certificate12 === 0) {
+            //     alert("Please upload all required documents.");
+            //     return false;
+            // }
+            return true;
+        }
+        function submitForm(event) {
+            console.log("asfsf")
+            event.preventDefault();
+            if (validateDocumentUploads()) {
+                saveDocumentDetails();
+                alert("Form Submitted Successfully!");
+                document.querySelectorAll('input').forEach(input => {
+                    if (input.type !== 'file') {
+                        input.value = '';
+                    }
+                });
+
+                document.querySelectorAll('select').forEach(select => {
+                    select.value = '';
+                });
+
+                document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                    radio.checked = false;
+                });
+
+                document.getElementById('document-upload-section').classList.add('hidden');
+                document.getElementById('personal-details-section').classList.remove('hidden');
+                window.location.reload()
+            }
+            
+        }
+        function showEducationalDetails() {
+            if (validatePersonalDetails()) {
+                savePersonalDetails();
+                document.getElementById('personal-details-section').classList.add('hidden');
+                document.getElementById('educational-details-section').classList.remove('hidden');
+            }
+        }
+
+
+        function showSuccessMessage() {
+            alert("Form submitted successfully!");
+            renderSubmittedData(); // Call the function to render submitted data
+        }
+
+
+        function storeSubmittedData() {
+            const personalDetails = JSON.parse(localStorage.getItem('personalDetails') || '{}');
+            const educationDetails = JSON.parse(localStorage.getItem('educationalDetails') || '{}');
+            const documentDetails = JSON.parse(localStorage.getItem('documentDetails') || '{}');
+
+            // Create a new entry
+            const newEntry = {
+                personalDetails,
+                educationDetails,
+                documentDetails
+            };
+
+            // Retrieve existing data
+            const submittedData = JSON.parse(localStorage.getItem('SubmittedData')) || [];
+            submittedData.push(newEntry); // Add the new entry to the array
+
+            // Store the updated array back to local storage
+            localStorage.setItem('SubmittedData', JSON.stringify(submittedData));
+        }
+
+        function validateDocumentUploads() {
+            // Add your document validation logic here
+            return true; // Assuming it's always valid for now
+        }
+
+
+        // Update the form submission handling
+        document.querySelector('#document-upload-section form').onsubmit = function (event) {
+            event.preventDefault();
+
+            if (validateDocumentUploads()) {
+                saveDocumentDetails(); // Save document details before storing submitted data
+                storeSubmittedData(); // Store the submitted data
+                showSuccessMessage(); // Show success message
+                renderSubmittedData(); // Render the submitted data in the table
+            }
+        };
+
+
+        function renderSubmittedData() {
+    const crudDataTable = document.getElementById('crudDataTable');
+    crudDataTable.innerHTML = ''; // Clear existing table data
+
+    // Retrieve the existing data from local storage
+    const submittedData = JSON.parse(localStorage.getItem('SubmittedData')) || [];
+
+    // Populate the table with each entry
+    submittedData.forEach(entry => {
+        const newRow = document.createElement('tr');
+
+        // Prepare educational details
+        const educationDetails = entry.educationDetails.map(edu => `
+            <p><strong>Qualification:</strong> ${edu.qualification || 'Not Provided'}</p>
+            <p><strong>Institution:</strong> ${edu.institution || 'Not Provided'}</p>
+            <p><strong>Graduation Year:</strong> ${edu.graduationYear || 'Not Provided'}</p>
+        `).join('<br>');
+
+        // Construct the table row for personal and document details
+        newRow.innerHTML = `
+            <td>${entry.personalDetails.adhar || 'Not Provided'}</td>
+            <td>${entry.personalDetails.name || 'Not Provided'}</td>
+            <td>${entry.personalDetails.mobile || 'Not Provided'}</td>
+            <td>${entry.personalDetails.email || 'Not Provided'}</td>
+            <td>${entry.personalDetails.age || 'Not Provided'}</td>
+            <td>${entry.personalDetails.dob || 'Not Provided'}</td>
+            <td>${entry.personalDetails.gender || 'Not Provided'}</td>
+            <td>${entry.personalDetails.status || 'Not Provided'}</td>
+            
+            <td>${entry.educationDetails.map(edu => `<p>${edu.qualification || 'Not Provided'}</p>`)}</td>
+            <td>${entry.educationDetails.map(edu => `<p>${edu.institution || 'Not Provided'}</p>`)}</td>
+            <td>${entry.educationDetails.map(edu => `<p>${edu.graduationYear || 'Not Provided'}</p>`)}</td>
+            
+            <!-- Handle document viewing for each document -->
+            <td>${renderDocument(entry.documentDetails.photo)}</td>
+            <td>${renderDocument(entry.documentDetails.adharCard)}</td>
+            <td>${renderDocument(entry.documentDetails.certificate12)}</td>
+            <td>${renderDocument(entry.documentDetails.domicileCertificate)}</td>
+            <td>${renderDocument(entry.documentDetails.panCard)}</td>
+            <td>${renderDocument(entry.documentDetails.drivingLicense)}</td>
+            
+            `;
+
+        // Append the new row to the table
+        crudDataTable.appendChild(newRow);
+    });
+}
+
+function renderDocument(doc) {
+    console.log("doc")
+    // Check if the document exists
+    if (!doc || doc === 'Not Provided') {
+        return 'Not Provided';
+    }
+
+    // Determine file type (you can enhance this check based on your use case)
+    const fileExtension = doc.split('.').pop().toLowerCase();
+
+    if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+        // Display image if the file is an image
+        return `<img src="${doc}" alt="Document" style="max-width: 100px; max-height: 100px;" />`;
+    } else if (fileExtension === 'pdf') {
+        // Display a link for PDF files
+        return `<a href="${doc}" target="_blank">View PDF</a>`;
+    } else {
+        // For other file types, provide a download link
+        return `<a href="${doc}" download>Download</a>`;
+       
+    }
+}
+        console.log('hgjhg')
+        const crudDataTable = document.getElementById('crudDataTable');
+        crudDataTable.innerHTML = ''; // Clear existing table data
+
+        // Retrieve the existing data from local storage
+        const submittedData = JSON.parse(localStorage.getItem('SubmittedData')) || [];
+
+        // Populate the table with each entry
+        submittedData.forEach(data => {
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+            <td>${data.personalDetails.adhar || 'Not Provided'}</td>
+            <td>${data.personalDetails.name || 'Not Provided'}</td>
+            <td>${data.personalDetails.mobile || 'Not Provided'}</td>
+            <td>${data.personalDetails.email || 'Not Provided'}</td>
+            <td>${data.personalDetails.age || 'Not Provided'}</td>
+            <td>${data.personalDetails.dob || 'Not Provided'}</td>
+            <td>${data.personalDetails.gender || 'Not Provided'}</td>
+            <td>${data.personalDetails.status || 'Not Provided'}</td>
+            <td>${data.educationDetails.qualification || 'Not Provided'}</td>
+            <td>${data.educationDetails.institution || 'Not Provided'}</td>
+            <td>${data.educationDetails.graduationYear || 'Not Provided'}</td>
+            <td>${data.documentDetails.photo || 'Not Provided'}</td>
+            <td>${data.documentDetails.adharCard || 'Not Provided'}</td>
+            <td>${data.documentDetails.certificate12 || 'Not Provided'}</td>
+            <td>${data.documentDetails.domicileCertificate || 'Not Provided'}</td>
+            <td>${data.documentDetails.panCard || 'Not Provided'}</td>
+            <td>${data.documentDetails.drivingLicense || 'Not Provided'}</td>
+        `;
+            crudDataTable.appendChild(newRow);
+        });
+
+        function addQualification() {
+            const qualificationsContainer = document.getElementById('qualifications-container');
+            const newQualification = document.createElement('div');
+            newQualification.classList.add('row', 'mb-3', 'qualification');
+
+            newQualification.innerHTML = `
+        <div class="col-md-4">
+            <label for="qualification">
+                <h6>Highest Qualification:</h6>
+            </label>
+            <select class="form-select border-dark" name="qualification[]">
+                <option value="">Select Qualification</option>
+                <option value="highschool">High School</option>
+                <option value="bachelor">Bachelor's Degree</option>
+                <option value="master">Master's Degree</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="institution">
+                <h6>Institution Name:</h6>
+            </label>
+            <input type="text" class="form-control border-dark" name="institution_name[]">
+        </div>
+        <div class="col-md-4">
+            <label for="graduationYear">
+                <h6>Year of Graduation:</h6>
+            </label>
+            <input type="number" class="form-control border-dark" name="graduation_year[]">
+        </div>
+    `;
+            qualificationsContainer.appendChild(newQualification);
+        }
+
+        function saveEducationalDetails() {
+            const qualifications = document.querySelectorAll('.qualification');
+            const educationalDetails = [];
+
+            qualifications.forEach(qualification => {
+                const qualificationObj = {
+                    qualification: qualification.querySelector('select[name="qualification[]"]').value,
+                    institution: qualification.querySelector('input[name="institution_name[]"]').value,
+                    graduationYear: qualification.querySelector('input[name="graduation_year[]"]').value
+                };
+                educationalDetails.push(qualificationObj);
+            });
+
+            localStorage.setItem('educationalDetails', JSON.stringify(educationalDetails));
+        }
+        function showEducationalDetails() {
+            if (validatePersonalDetails()) {
+                savePersonalDetails();
+                document.getElementById('personal-details-section').classList.add('hidden');
+                document.getElementById('educational-details-section').classList.remove('hidden');
+            }
+        }
+
+        function saveAndNext() {
+            saveEducationalDetails();
+            document.getElementById('educational-details-section').classList.add('hidden');
+            document.getElementById('document-upload-section').classList.remove('hidden');
+        }
+
+    </script>
+</body>
+</html>

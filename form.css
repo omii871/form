@@ -1,0 +1,26 @@
+#navlogo{
+    color: #ffffff; 
+    width: 60px;
+    height: 60px;
+    place-self: center; 
+    align-content: center; 
+    text-align-last: center;
+    font-size: 30px;
+}
+.hidden {
+    display: none;
+}
+.step-line {
+    width: 70%;
+    height: 8px;
+    background-color: #797575;
+    position: absolute;
+    top: 35px;
+    z-index: -1;
+}
+.hidden {
+    display: none;
+}
+.header-row th {
+    background-color: rgb(243, 248, 248); /* Your desired color */
+}
